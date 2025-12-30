@@ -1,4 +1,4 @@
-LLM Guardian 🛡️
+### LLM Guardian 🛡️ by Asma Ahmed
 
 End-to-end observability + safety monitoring for LLM apps (Google Cloud x Datadog)
 
@@ -6,7 +6,7 @@ LLM Guardian is a full-stack web app that helps AI engineers monitor and trouble
 
 Built for the AI Partner Catalyst: Accelerate Innovation hackathon — Datadog Challenge.
 
-✨ Key Features
+### ✨ Key Features
 
 Chat / LLM Request Runner: Send prompts and capture responses
 
@@ -40,7 +40,7 @@ Charts + tables for requests/incidents/monitors
 
 Real-time-ish refresh via React Query
 
-🧱 Tech Stack
+### 🧱 Tech Stack
 
 Frontend: Next.js (React), TailwindCSS, Recharts
 
@@ -54,7 +54,7 @@ State/Data: @tanstack/react-query
 
 Observability: Datadog (logs/metrics/traces – integrated per challenge)
 
-🚀 Live Demo
+### 🚀 Live Demo
 
 Hosted App: (add your Vercel URL here)
 
@@ -62,7 +62,7 @@ Demo Video (≤ 3 min): (add YouTube/Vimeo link here)
 
 Devpost Submission: (add Devpost link here)
 
-✅ Hackathon Requirement Mapping (Datadog Challenge)
+### Hackathon Requirement Mapping (Datadog Challenge)
 
 This project:
 
@@ -76,7 +76,7 @@ Includes a dashboard surfacing key health + security signals
 
 Note: If you used a local stub model during development, you can switch to Gemini/Vertex by setting env vars (see below).
 
-🛠️ Local Development
+### 🛠️ Local Development
 1) Install dependencies
 npm install
 
@@ -104,10 +104,9 @@ npm run prisma:migrate
 5) Start dev server
 npm run dev
 
-
 Open: http://localhost:3000
 
-🌐 Deploy to Vercel
+### 🌐 Deploy to Vercel
 Environment variables (Vercel)
 
 In Vercel → Project → Settings → Environment Variables, set:
@@ -116,7 +115,7 @@ DATABASE_URL → paste your Supabase pooled Postgres URL (often includes pgbounc
 
 DIRECT_URL → paste your Supabase non-pooling Postgres URL (port 5432)
 
-✅ Important: paste the full URL (no quotes, no @VARNAME references).
+### Important: paste the full URL (no quotes, no @VARNAME references).
 
 Build script
 
@@ -140,7 +139,7 @@ npm run prisma:migrate      # Local migration (dev)
 npm run prisma:migrate:deploy # Prod migration (deploy)
 npm run seed                # Seed sample data (if configured)
 
-🗃️ Database Schema (Prisma)
+### 🗃️ Database Schema (Prisma)
 
 Core entities:
 
@@ -150,7 +149,7 @@ Incident — actionable engineering items linked to a request
 
 Monitor — threshold-based monitors and trigger counts
 
-🧩 StackBlitz Support (FYI)
+### 🧩 StackBlitz Support (FYI)
 
 StackBlitz is great for quick UI demos, but Prisma migrations may not run reliably there.
 Recommended approach:
@@ -159,7 +158,7 @@ Use Vercel for full backend + DB
 
 Use StackBlitz for UI preview / mock data if needed
 
-🔐 Security Notes
+### 🔐 Security Notes
 
 Never commit .env
 
@@ -167,15 +166,13 @@ Rotate secrets if they are ever shared publicly
 
 Use Supabase Service Role key only on server-side (never in browser)
 
-📄 License
+### 📄 License
 
 This repository is open source for hackathon submission requirements.
 
-Add a license file:
-
 LICENSE → MIT (recommended)
 
-🙌 Acknowledgements
+### 🙌 Acknowledgements
 
 Google Cloud (Gemini / Vertex AI)
 

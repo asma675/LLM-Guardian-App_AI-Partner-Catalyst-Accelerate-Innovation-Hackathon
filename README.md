@@ -1,92 +1,186 @@
-# LLM Guardian (Next.js + Prisma)
+LLM Guardian 🛡️
 
-A traditional Next.js/React implementation of the **LLM Guardian** dashboard you originally built in Base44 — rebuilt with:
+End-to-end observability + safety monitoring for LLM apps (Google Cloud x Datadog)
 
-- **Next.js App Router** (React)
-- **Node.js API routes** (`/api/*`)
-- **Prisma + SQLite** database (easy local dev)
-- **React Query** for client data fetching
-- **Recharts** for charts
-- Minimal **PII + hallucination heuristics** + monitor-driven incident creation
+LLM Guardian is a full-stack web app that helps AI engineers monitor and troubleshoot LLM applications by tracking latency, errors, token usage, estimated cost, and safety signals (PII risk + hallucination risk). It also generates actionable incidents and provides a dashboard view of system health.
 
-> This repo intentionally contains **no Base44-specific runtime dependencies or Base44 API calls**.
+Built for the AI Partner Catalyst: Accelerate Innovation hackathon — Datadog Challenge.
 
----
+✨ Key Features
 
-## Features
+Chat / LLM Request Runner: Send prompts and capture responses
 
-- Dashboard KPIs: avg latency, tokens, cost, error rate
-- Trends (last 12 hours): latency & cost charts
-- Hallucination risk gauge (demo heuristic)
-- Incidents page with severity + suggested fixes
-- Monitors page with toggles + thresholds
-- Logs page (request telemetry)
-- Simulate page:
-  - Generate synthetic traffic
-  - Call a real LLM via Gemini (optional) and record telemetry
+Telemetry capture: latency, token counts, estimated cost, error states
 
----
+Safety signals:
 
-## Quickstart
+PII detection flag
 
-### 1) Install
+Hallucination risk score
 
-```bash
+Flags JSON for rule triggers / metadata
+
+Incidents:
+
+Create incident records from detection rules
+
+Track incident status + severity
+
+Suggested fix field for engineering handoff
+
+Monitoring rules (basic):
+
+Threshold monitors (latency / error rate / risk score)
+
+Trigger counts per monitor
+
+Dashboard UI:
+
+Charts + tables for requests/incidents/monitors
+
+Real-time-ish refresh via React Query
+
+🧱 Tech Stack
+
+Frontend: Next.js (React), TailwindCSS, Recharts
+
+Backend: Next.js API Routes (/api/*)
+
+Database: Supabase Postgres
+
+ORM: Prisma
+
+State/Data: @tanstack/react-query
+
+Observability: Datadog (logs/metrics/traces – integrated per challenge)
+
+🚀 Live Demo
+
+Hosted App: (add your Vercel URL here)
+
+Demo Video (≤ 3 min): (add YouTube/Vimeo link here)
+
+Devpost Submission: (add Devpost link here)
+
+✅ Hackathon Requirement Mapping (Datadog Challenge)
+
+This project:
+
+Uses Google Cloud AI (Gemini / Vertex AI) to power LLM responses
+
+Streams LLM + runtime telemetry to Datadog
+
+Provides detection rules that generate actionable items (incidents/alerts) with engineering context
+
+Includes a dashboard surfacing key health + security signals
+
+Note: If you used a local stub model during development, you can switch to Gemini/Vertex by setting env vars (see below).
+
+🛠️ Local Development
+1) Install dependencies
 npm install
-```
 
-### 2) Configure env
+2) Create .env (root)
 
-Copy `.env.example` to `.env` and set values:
+Create a file named .env in the project root:
 
-```bash
-cp .env.example .env
-```
+# Prisma / Supabase Postgres
+DATABASE_URL="postgres://..."
+DIRECT_URL="postgres://..."
 
-At minimum you need:
+# Optional: Google Cloud / Gemini (if you wired it)
+GOOGLE_API_KEY="..."
 
-- `DATABASE_URL="file:./dev.db"`
+# Optional: Datadog
+DD_API_KEY="..."
+DD_SITE="datadoghq.com"
 
-Optional (to enable real chat):
-- `GEMINI_API_KEY="..."`
+3) Generate Prisma client
+npm run prisma:generate
 
-### 3) Create DB + seed monitors
+4) Run migrations (local)
+npm run prisma:migrate
 
-```bash
-npx prisma migrate dev --name init
-npm run seed
-```
-
-### 4) Run
-
-```bash
+5) Start dev server
 npm run dev
-```
+
 
 Open: http://localhost:3000
 
----
+🌐 Deploy to Vercel
+Environment variables (Vercel)
 
-## Notes
+In Vercel → Project → Settings → Environment Variables, set:
 
-- `Simulate` works even without an LLM key (it can generate synthetic traffic).
-- `/api/chat` returns a stub response if `GEMINI_API_KEY` is not set, but still logs telemetry.
-- Thresholds are configurable on the **Monitors** page.
+DATABASE_URL → paste your Supabase pooled Postgres URL (often includes pgbouncer=true)
 
----
+DIRECT_URL → paste your Supabase non-pooling Postgres URL (port 5432)
 
-## Project structure
+✅ Important: paste the full URL (no quotes, no @VARNAME references).
 
-- `src/app/*` — Next.js pages (Dashboard, Incidents, Monitors, Logs, Simulate)
-- `src/app/api/*` — backend endpoints
-- `prisma/schema.prisma` — DB schema
-- `prisma/seed.ts` — default monitors
-- `src/lib/guardrails.ts` — toy PII + hallucination scoring
-- `src/lib/evaluate.ts` — monitor evaluation -> incident creation
+Build script
 
----
+The build script runs:
 
-## Deploy
+prisma generate
 
-- Works on Vercel (SQLite is fine for demos; for production use Postgres).
-- Replace `DATABASE_URL` with a Postgres connection string if needed and run migrations.
+prisma migrate deploy
+
+next build
+
+So your DB schema is applied automatically during deployment.
+
+🧪 Scripts
+npm run dev                 # Start Next.js dev server
+npm run build               # Generate Prisma + migrate deploy + Next build
+npm run start               # Run production server
+npm run lint                # Lint
+npm run prisma:generate     # Prisma client generation
+npm run prisma:migrate      # Local migration (dev)
+npm run prisma:migrate:deploy # Prod migration (deploy)
+npm run seed                # Seed sample data (if configured)
+
+🗃️ Database Schema (Prisma)
+
+Core entities:
+
+LlmRequest — each prompt/response with telemetry + safety flags
+
+Incident — actionable engineering items linked to a request
+
+Monitor — threshold-based monitors and trigger counts
+
+🧩 StackBlitz Support (FYI)
+
+StackBlitz is great for quick UI demos, but Prisma migrations may not run reliably there.
+Recommended approach:
+
+Use Vercel for full backend + DB
+
+Use StackBlitz for UI preview / mock data if needed
+
+🔐 Security Notes
+
+Never commit .env
+
+Rotate secrets if they are ever shared publicly
+
+Use Supabase Service Role key only on server-side (never in browser)
+
+📄 License
+
+This repository is open source for hackathon submission requirements.
+
+Add a license file:
+
+LICENSE → MIT (recommended)
+
+🙌 Acknowledgements
+
+Google Cloud (Gemini / Vertex AI)
+
+Datadog
+
+Devpost Hackathon: AI Partner Catalyst: Accelerate Innovation
+
+Confluent, ElevenLabs (hackathon partners)

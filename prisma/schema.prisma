@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model LlmRequest {
+  id                 String   @id @default(cuid())
+  createdAt          DateTime @default(now())
+  model              String
+  prompt             String
+  response           String?
+  latencyMs          Int
+  tokens             Int
+  costUsd            Float
+  error              String?
+  piiDetected        Boolean  @default(false)
+  hallucinationRisk  Float    @default(0)
+  flagsJson          String   @default("[]")
+
+  incidents          Incident[] @relation("ReqIncidents")
+}
+
+model Incident {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  title        String
+  description  String
+  model        String?
+  severity     Severity @default(MEDIUM)
+  status       Status   @default(OPEN)
+  suggestedFix String?
+  relatedReqId String?
+
+  request      LlmRequest? @relation("ReqIncidents", fields: [relatedReqId], references: [id], onDelete: SetNull)
+}
+
+model Monitor {
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
+  name          String
+  type          String
+  threshold     Float
+  enabled       Boolean  @default(true)
+  severity      Severity @default(MEDIUM)
+  triggeredCount Int     @default(0)
+}
+
+enum Severity {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum Status {
+  OPEN
+  INVESTIGATING
+  RESOLVED
+}

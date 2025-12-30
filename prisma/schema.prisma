@@ -8,8 +8,8 @@ datasource db {
 }
 
 model LlmRequest {
-  id                String    @id @default(cuid())
-  createdAt         DateTime  @default(now())
+  id                String     @id @default(cuid())
+  createdAt         DateTime   @default(now())
   model             String
   prompt            String
   response          String?
@@ -17,9 +17,9 @@ model LlmRequest {
   tokens            Int
   costUsd           Float
   error             String?
-  piiDetected       Boolean   @default(false)
-  hallucinationRisk Float     @default(0)
-  flagsJson         String    @default("[]")
+  piiDetected       Boolean    @default(false)
+  hallucinationRisk Float      @default(0)
+  flagsJson         String     @default("[]")
 
   incidents         Incident[] @relation("ReqIncidents")
 }
@@ -35,12 +35,7 @@ model Incident {
   suggestedFix  String?
   relatedReqId  String?
 
-  request       LlmRequest? @relation(
-    "ReqIncidents",
-    fields: [relatedReqId],
-    references: [id],
-    onDelete: SetNull
-  )
+  request       LlmRequest? @relation("ReqIncidents", fields: [relatedReqId], references: [id], onDelete: SetNull)
 }
 
 model Monitor {

@@ -3,13 +3,14 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")   // use pooled or non-pooled; see notes below
+  directUrl = env("DIRECT_URL")     // MUST be non-pooled for migrations
 }
 
 model LlmRequest {
-  id                String     @id @default(cuid())
-  createdAt         DateTime   @default(now())
+  id                String    @id @default(cuid())
+  createdAt         DateTime  @default(now())
   model             String
   prompt            String
   response          String?
@@ -17,9 +18,9 @@ model LlmRequest {
   tokens            Int
   costUsd           Float
   error             String?
-  piiDetected       Boolean    @default(false)
-  hallucinationRisk Float      @default(0)
-  flagsJson         String     @default("[]")
+  piiDetected       Boolean   @default(false)
+  hallucinationRisk Float     @default(0)
+  flagsJson         String    @default("[]")
 
   incidents         Incident[] @relation("ReqIncidents")
 }
@@ -35,7 +36,12 @@ model Incident {
   suggestedFix  String?
   relatedReqId  String?
 
-  request       LlmRequest? @relation("ReqIncidents", fields: [relatedReqId], references: [id], onDelete: SetNull)
+  request       LlmRequest? @relation(
+    "ReqIncidents",
+    fields: [relatedReqId],
+    references: [id],
+    onDelete: SetNull
+  )
 }
 
 model Monitor {

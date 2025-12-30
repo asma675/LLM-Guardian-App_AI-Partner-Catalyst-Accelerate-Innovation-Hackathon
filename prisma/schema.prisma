@@ -22,43 +22,30 @@ model LlmRequest {
   hallucinationRisk Float     @default(0)
   flagsJson         String    @default("[]")
 
-  incidents         Incident[] @relation("ReqIncidents")
+  incidents         Incident[]
 }
 
 model Incident {
-  id            String    @id @default(cuid())
-  createdAt     DateTime  @default(now())
+  id            String   @id @default(cuid())
+  createdAt     DateTime @default(now())
   title         String
   description   String
   model         String?
-  severity      Severity  @default(MEDIUM)
-  status        Status    @default(OPEN)
+  severity      String   @default("MEDIUM")
+  status        String   @default("OPEN")
   suggestedFix  String?
   relatedReqId  String?
 
-  request       LlmRequest? @relation("ReqIncidents", fields: [relatedReqId], references: [id], onDelete: SetNull)
+  request       LlmRequest? @relation(fields: [relatedReqId], references: [id], onDelete: SetNull)
 }
 
 model Monitor {
-  id             String    @id @default(cuid())
-  createdAt      DateTime  @default(now())
+  id             String   @id @default(cuid())
+  createdAt      DateTime @default(now())
   name           String
   type           String
   threshold      Float
-  enabled        Boolean   @default(true)
-  severity       Severity  @default(MEDIUM)
-  triggeredCount Int       @default(0)
-}
-
-enum Severity {
-  LOW
-  MEDIUM
-  HIGH
-  CRITICAL
-}
-
-enum Status {
-  OPEN
-  INVESTIGATING
-  RESOLVED
+  enabled        Boolean  @default(true)
+  severity       String   @default("MEDIUM")
+  triggeredCount Int      @default(0)
 }

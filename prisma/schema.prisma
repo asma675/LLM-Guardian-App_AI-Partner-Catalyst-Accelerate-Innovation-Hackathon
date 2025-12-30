@@ -4,8 +4,8 @@ generator client {
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")   // use pooled or non-pooled; see notes below
-  directUrl = env("DIRECT_URL")     // MUST be non-pooled for migrations
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model LlmRequest {
@@ -36,12 +36,7 @@ model Incident {
   suggestedFix  String?
   relatedReqId  String?
 
-  request       LlmRequest? @relation(
-    "ReqIncidents",
-    fields: [relatedReqId],
-    references: [id],
-    onDelete: SetNull
-  )
+  request       LlmRequest? @relation("ReqIncidents", fields: [relatedReqId], references: [id], onDelete: SetNull)
 }
 
 model Monitor {

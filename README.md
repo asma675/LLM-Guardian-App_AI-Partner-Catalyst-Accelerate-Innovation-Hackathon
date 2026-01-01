@@ -170,7 +170,7 @@ Use Supabase Service Role key only on server-side (never in browser)
 
 This repository is open source for hackathon submission requirements.
 
-LICENSE → MIT (recommended)
+LICENSE → MIT 
 
 ### 🙌 Acknowledgements
 

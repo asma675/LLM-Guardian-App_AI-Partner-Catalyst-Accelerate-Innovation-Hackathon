@@ -1,4 +1,4 @@
-=# 🛡️ LLM Guardian
+# 🛡️ LLM Guardian
 
 ### Enterprise Observability, Security & AI Governance Platform for Large Language Model Applications
 

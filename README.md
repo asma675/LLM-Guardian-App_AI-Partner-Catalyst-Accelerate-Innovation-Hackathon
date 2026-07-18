@@ -310,15 +310,3 @@ Software Engineer • AI Engineer • Product Builder
 # 📄 License
 
 Licensed under the **MIT License**.
-
----
-
-## A few suggestions that will make this look even more impressive to recruiters:
-
-* Add a **system architecture diagram** near the top.
-* Include **GIFs** of the dashboard and incident workflow instead of only screenshots.
-* Add a **Tech Stack badges** section (Shields.io).
-* Add **GitHub Actions CI**, code coverage, and deployment badges.
-* Include a **Performance & Scale** section (e.g., average response time, requests tested, telemetry captured).
-* Add an **Enterprise Use Cases** section (Healthcare, Banking, Insurance, Retail, Public Sector).
-* Mention planned integrations with **Langfuse**, **LangSmith**, **OpenTelemetry**, **IBM watsonx**, and **IBM Granite** in the roadmap. Those names are highly recognizable to recruiters and signal familiarity with the enterprise AI ecosystem.

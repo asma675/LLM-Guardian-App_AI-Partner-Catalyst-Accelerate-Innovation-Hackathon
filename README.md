@@ -1,183 +1,324 @@
-### LLM Guardian 🛡️ by Asma Ahmed
+=# 🛡️ LLM Guardian
 
-End-to-end observability + safety monitoring for LLM apps (Google Cloud x Datadog)
+### Enterprise Observability, Security & AI Governance Platform for Large Language Model Applications
 
-LLM Guardian is a full-stack web app that helps AI engineers monitor and troubleshoot LLM applications by tracking latency, errors, token usage, estimated cost, and safety signals (PII risk + hallucination risk). It also generates actionable incidents and provides a dashboard view of system health.
+[![Next.js](https://img.shields.io/badge/Next.js-15-black)]()
+[![React](https://img.shields.io/badge/React-19-61DAFB)]()
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)]()
+[![Datadog](https://img.shields.io/badge/Datadog-Integrated-632CA6)]()
+[![Google Cloud](https://img.shields.io/badge/Google%20Cloud-Gemini-4285F4)]()
+[![License](https://img.shields.io/badge/License-MIT-green)]()
 
-Built for the AI Partner Catalyst: Accelerate Innovation hackathon — Datadog Challenge.
+> **LLM Guardian** is a production-inspired AI observability and governance platform that enables engineering teams to monitor, secure, evaluate, and troubleshoot enterprise Generative AI applications. The platform combines runtime telemetry, AI safety analysis, incident management, and interactive dashboards into a unified developer experience.
 
-### ✨ Key Features
+Built by **Asma Ahmed** for the **Google Cloud × Datadog AI Partner Catalyst Hackathon**.
 
-Chat / LLM Request Runner: Send prompts and capture responses
+---
 
-Telemetry capture: latency, token counts, estimated cost, error states
+# 🚀 Why LLM Guardian?
 
-Safety signals:
+Deploying LLM-powered applications introduces challenges beyond traditional software engineering.
 
-PII detection flag
+Organizations need visibility into:
 
-Hallucination risk score
+* Response latency
+* Token consumption
+* AI cost
+* Hallucination risk
+* PII exposure
+* Prompt injection attempts
+* System reliability
+* Production incidents
+* Governance & compliance
 
-Flags JSON for rule triggers / metadata
+LLM Guardian provides a centralized platform for monitoring these signals in real time.
 
-Incidents:
+---
 
-Create incident records from detection rules
+# ✨ Features
 
-Track incident status + severity
+### 🤖 LLM Playground
 
-Suggested fix field for engineering handoff
+* Execute prompts against LLMs
+* Capture prompts and responses
+* Compare model behavior
+* Evaluate response quality
 
-Monitoring rules (basic):
+---
 
-Threshold monitors (latency / error rate / risk score)
+### 📊 AI Observability
 
-Trigger counts per monitor
+Automatically captures
 
-Dashboard UI:
+* Response latency
+* Token usage
+* Estimated inference cost
+* Error rate
+* Request metadata
+* Trace identifiers
 
-Charts + tables for requests/incidents/monitors
+Inspired by modern observability platforms including Datadog.
 
-Real-time-ish refresh via React Query
+---
 
-### 🧱 Tech Stack
+### 🛡 AI Safety Monitoring
 
-Frontend: Next.js (React), TailwindCSS, Recharts
+Built-in detection for
 
-Backend: Next.js API Routes (/api/*)
+* Personally Identifiable Information (PII)
+* Hallucination risk
+* Safety rule violations
+* Prompt metadata
+* Configurable policy flags
 
-Database: Supabase Postgres
+Designed around Responsible AI principles.
 
-ORM: Prisma
+---
 
-State/Data: @tanstack/react-query
+### 🚨 Incident Management
 
-Observability: Datadog (logs/metrics/traces – integrated per challenge)
+Automatically converts AI failures into engineering incidents.
 
-### 🚀 Live Demo
+Each incident contains
 
-Hosted App: (add your Vercel URL here)
+* Severity
+* Status
+* Detection source
+* Suggested remediation
+* Engineering notes
+* Resolution workflow
 
-Demo Video (≤ 3 min): (add YouTube/Vimeo link here)
+---
 
-Devpost Submission: (add Devpost link here)
+### 📈 Monitoring Rules
 
-### Hackathon Requirement Mapping (Datadog Challenge)
+Create custom monitoring policies using thresholds.
 
-This project:
+Examples
 
-Uses Google Cloud AI (Gemini / Vertex AI) to power LLM responses
+* Latency > 3 seconds
+* Error rate > 5%
+* Hallucination score > 0.75
+* Excessive token consumption
 
-Streams LLM + runtime telemetry to Datadog
+---
 
-Provides detection rules that generate actionable items (incidents/alerts) with engineering context
+### 📉 Dashboards
 
-Includes a dashboard surfacing key health + security signals
+Real-time operational dashboards showing
 
-Note: If you used a local stub model during development, you can switch to Gemini/Vertex by setting env vars (see below).
+* Request throughput
+* Token usage
+* Cost trends
+* Safety violations
+* Incident summaries
+* Active monitoring rules
 
-### 🛠️ Local Development
-1) Install dependencies
+---
+
+# 🏗 Architecture
+
+```text
+                User
+                 │
+                 ▼
+         Next.js Frontend
+                 │
+      React Query + API Routes
+                 │
+                 ▼
+        Google Gemini / Vertex AI
+                 │
+                 ▼
+      Telemetry + Safety Pipeline
+                 │
+      ┌──────────┴───────────┐
+      ▼                      ▼
+ Datadog              Supabase Postgres
+ Metrics/Logs          Prisma ORM
+      │
+      ▼
+ Incident Engine
+      │
+      ▼
+ Monitoring Dashboard
+```
+
+---
+
+# 🧰 Technology Stack
+
+| Layer            | Technologies                                       |
+| ---------------- | -------------------------------------------------- |
+| Frontend         | Next.js, React, TypeScript, Tailwind CSS, Recharts |
+| Backend          | Next.js API Routes, REST APIs                      |
+| Database         | Supabase PostgreSQL                                |
+| ORM              | Prisma                                             |
+| State Management | TanStack React Query                               |
+| AI               | Google Gemini, Vertex AI                           |
+| Observability    | Datadog                                            |
+| Deployment       | Vercel                                             |
+| Version Control  | Git & GitHub                                       |
+
+---
+
+# 📊 Key Capabilities
+
+✔ AI Observability
+
+✔ Runtime Telemetry
+
+✔ AI Governance
+
+✔ Responsible AI
+
+✔ Prompt Monitoring
+
+✔ Hallucination Detection
+
+✔ PII Detection
+
+✔ Incident Management
+
+✔ Cost Tracking
+
+✔ Token Analytics
+
+✔ Engineering Dashboards
+
+✔ Enterprise Monitoring
+
+---
+
+# 📂 Project Structure
+
+```
+app/
+components/
+lib/
+prisma/
+public/
+types/
+utils/
+```
+
+---
+
+# ⚡ Getting Started
+
+## Install
+
+```bash
 npm install
+```
 
-2) Create .env (root)
+---
 
-Create a file named .env in the project root:
+## Configure Environment
 
-# Prisma / Supabase Postgres
-DATABASE_URL="postgres://..."
-DIRECT_URL="postgres://..."
+```env
+DATABASE_URL=
+DIRECT_URL=
 
-# Optional: Google Cloud / Gemini (if you wired it)
-GOOGLE_API_KEY="..."
+GOOGLE_API_KEY=
 
-# Optional: Datadog
-DD_API_KEY="..."
-DD_SITE="datadoghq.com"
+DD_API_KEY=
+DD_SITE=
+```
 
-3) Generate Prisma client
+---
+
+## Generate Prisma
+
+```bash
 npm run prisma:generate
+```
 
-4) Run migrations (local)
+---
+
+## Run Migrations
+
+```bash
 npm run prisma:migrate
+```
 
-5) Start dev server
+---
+
+## Start
+
+```bash
 npm run dev
+```
 
-Open: http://localhost:3000
+---
 
-### 🌐 Deploy to Vercel
-Environment variables (Vercel)
+# 🚀 Deployment
 
-In Vercel → Project → Settings → Environment Variables, set:
+The project is optimized for deployment on **Vercel**.
 
-DATABASE_URL → paste your Supabase pooled Postgres URL (often includes pgbouncer=true)
+Deployment automatically
 
-DIRECT_URL → paste your Supabase non-pooling Postgres URL (port 5432)
+* Generates Prisma Client
+* Applies database migrations
+* Builds the Next.js application
 
-### Important: paste the full URL (no quotes, no @VARNAME references).
+---
 
-Build script
+# 📈 Future Roadmap
 
-The build script runs:
+* Claude Integration
+* OpenAI Integration
+* IBM Granite Integration
+* Amazon Bedrock
+* Azure OpenAI
+* LangSmith Evaluation
+* Langfuse Observability
+* OpenTelemetry Support
+* RBAC & SSO
+* Slack & Microsoft Teams alerts
+* Kubernetes deployment
+* Multi-model benchmarking
+* AI Agent monitoring
 
-prisma generate
+---
 
-prisma migrate deploy
+# 🏆 Hackathon
 
-next build
+**Google Cloud × Datadog AI Partner Catalyst**
 
-So your DB schema is applied automatically during deployment.
+Challenge Focus
 
-🧪 Scripts
-npm run dev                 # Start Next.js dev server
-npm run build               # Generate Prisma + migrate deploy + Next build
-npm run start               # Run production server
-npm run lint                # Lint
-npm run prisma:generate     # Prisma client generation
-npm run prisma:migrate      # Local migration (dev)
-npm run prisma:migrate:deploy # Prod migration (deploy)
-npm run seed                # Seed sample data (if configured)
+* Google Gemini
+* Vertex AI
+* Datadog Observability
+* Enterprise AI Monitoring
 
-### 🗃️ Database Schema (Prisma)
+---
 
-Core entities:
+# 👩‍💻 Author
 
-LlmRequest — each prompt/response with telemetry + safety flags
+**Asma Ahmed**
 
-Incident — actionable engineering items linked to a request
+Software Engineer • AI Engineer • Product Builder
 
-Monitor — threshold-based monitors and trigger counts
+* 🌐 Portfolio
+* 💼 LinkedIn
+* 💻 GitHub
 
-### 🧩 StackBlitz Support (FYI)
+---
 
-StackBlitz is great for quick UI demos, but Prisma migrations may not run reliably there.
-Recommended approach:
+# 📄 License
 
-Use Vercel for full backend + DB
+Licensed under the **MIT License**.
 
-Use StackBlitz for UI preview / mock data if needed
+---
 
-### 🔐 Security Notes
+## A few suggestions that will make this look even more impressive to recruiters:
 
-Never commit .env
-
-Rotate secrets if they are ever shared publicly
-
-Use Supabase Service Role key only on server-side (never in browser)
-
-### 📄 License
-
-This repository is open source for hackathon submission requirements.
-
-LICENSE → MIT 
-
-### 🙌 Acknowledgements
-
-Google Cloud (Gemini / Vertex AI)
-
-Datadog
-
-Devpost Hackathon: AI Partner Catalyst: Accelerate Innovation
-
-Confluent, ElevenLabs (hackathon partners)
+* Add a **system architecture diagram** near the top.
+* Include **GIFs** of the dashboard and incident workflow instead of only screenshots.
+* Add a **Tech Stack badges** section (Shields.io).
+* Add **GitHub Actions CI**, code coverage, and deployment badges.
+* Include a **Performance & Scale** section (e.g., average response time, requests tested, telemetry captured).
+* Add an **Enterprise Use Cases** section (Healthcare, Banking, Insurance, Retail, Public Sector).
+* Mention planned integrations with **Langfuse**, **LangSmith**, **OpenTelemetry**, **IBM watsonx**, and **IBM Granite** in the roadmap. Those names are highly recognizable to recruiters and signal familiarity with the enterprise AI ecosystem.
